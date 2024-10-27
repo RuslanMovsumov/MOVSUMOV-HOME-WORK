@@ -60,7 +60,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        // Пример использования
+       
         System.out.println(checkSumInRange(5, 6)); // true
         System.out.println(checkSumInRange(3, 8)); // true
         System.out.println(checkSumInRange(4, 7)); // false
@@ -79,7 +79,7 @@ public class Lesson 2 {
     }
 
     public static void main(String[] args) {
-        // Пример использования
+      
         checkNumber(5);   // Положительное число.
         checkNumber(-3);  // Отрицательное число.
         checkNumber(0);   // Положительное число.
@@ -174,7 +174,7 @@ public class Lesson2 {
 
 public class Lesson2 {
     public static void main(String[] args) {
-        int size = 5; // Размерность массива 
+        int size = 5;
         int[][] array = new int[size][size];
 
         for (int i = 0; i < size; i++) {
