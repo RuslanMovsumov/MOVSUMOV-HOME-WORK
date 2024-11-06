@@ -1,5 +1,4 @@
-Задание 1 
-
+ 
 public class Lesson3  {
    
     private String fullName;  
@@ -37,94 +36,24 @@ public class Lesson3  {
     }
 }
 
-Задание  2 
-
-public class Employee {
-    
-    private String fullName;  
-    private String position;   
-    private String email;      
-    private String phone;      
-    private double salary;     
-    private int age;          
-
-    // Конструктор класса
-    public Employee(String fullName, String position, String email, String phone, double salary, int age) {
-        this.fullName = fullName;
-        this.position = position;
-        this.email = email;
-        this.phone = phone;
-        this.salary = salary;
-        this.age = age;
-    }
-
-    // Метод для вывода информации об объекте
-    public void displayInfo() {
-        System.out.println("ФИО: " + fullName);
-        System.out.println("Должность: " + position);
-        System.out.println("Email: " + email);
-        System.out.println("Телефон: " + phone);
-        System.out.println("Зарплата: " + salary);
-        System.out.println("Возраст: " + age);
-        System.out.println(); // Пустая строка для удобства вывода
-    }
-
     public static void main(String[] args) {
         // Объявляем массив из 5 сотрудников
-        Employee[] employeeArray = new Employee[5];
+        Person[] persArray = new Person [5];
 
         // Заполняем массив данными сотрудников
-        employeeArray[0] = new Employee("Гордей Никита Валерьевич", "Инженер", "gordey@example.com", "+7 999 111 11 11", 50000, 50);
-        employeeArray[1] = new Employee("Чубинский Иван Владиславович", "Менеджер", "c4ubausv@example.com", "+7 999 222 22 22", 60000, 55);
-        employeeArray[2] = new Employee("Мовсумов Руслан Раулович", "Аналитик", "mowsum@example.com", "+7 999 333 33 33", 70000, 26);
-        employeeArray[3] = new Employee("Леонов Николай Витальевич", "Разработчик", "leonov@example.com", "+7 999 444 44 44", 80000, 40);
-        employeeArray[4] = new Employee("Ропот Олег Дмитриевич", "Дизайнер", "ropot@example.com", "+7 999 555 55 55", 65000, 32);
+        persArray[0] = new Person("Гордей Никита Валерьевич", "Инженер", "gordey@example.com", "+7 999 111 11 11", 50000, 50);
+        persArray[1] = new Person("Чубинский Иван Владиславович", "Менеджер", "c4ubausv@example.com", "+7 999 222 22 22", 60000, 55);
+        persArray[2] = new Person("Мовсумов Руслан Раулович", "Аналитик", "mowsum@example.com", "+7 999 333 33 33", 70000, 26);
+        persArray[3] = new Person("Леонов Николай Витальевич", "Разработчик", "leonov@example.com", "+7 999 444 44 44", 80000, 40);
+        persArray[4] = new Person("Ропот Олег Дмитриевич", "Дизайнер", "ropot@example.com", "+7 999 555 55 55", 65000, 32);
 
-        for (Employee employee : employeeArray) {
-            employee.displayInfo();
+       // Вывод информации о каждом сотруднике
+        System.out.println("Информация о сотрудниках:");
+        for (Person person : persArray) {
+            person.displayInfo();
         }
     }
 }
 
-Задание 3
 
-public class Park {
 
-    public class Attraction {
-        private String name;       
-        private String workingHours; 
-        private double price;     
-
-        // Конструктор класса Attraction
-        public Attraction(String name, String workingHours, double price) {
-            this.name = name;
-            this.workingHours = workingHours;
-            this.price = price;
-        }
-
-        // Метод для отображения информации об аттракционе
-        public void displayInfo() {
-            System.out.println("Аттракцион: " + name);
-            System.out.println("Время работы: " + workingHours);
-            System.out.println("Цена: " + price + " руб.");
-            System.out.println(); // Пустая строка для удобства вывода
-        }
-    }
-
-    // Метод для добавления и отображения аттракционов
-    public void showAttractions() {
-  
-        Attraction attraction1 = new Attraction("Ракушка", "10:00 - 22:00", 300);
-        Attraction attraction2 = new Attraction("Американские горки", "11:00 - 23:00", 450);
-        Attraction attraction3 = new Attraction("Комната страха", "12:00 - 20:00", 500);
-        
-        attraction1.displayInfo();
-        attraction2.displayInfo();
-        attraction3.displayInfo();
-    }
-
-    public static void main(String[] args) {
-        Park park = new Park(); 
-        park.showAttractions(); 
-    }
-}
