@@ -1,0 +1,40 @@
+public class Park {
+
+    public class Attraction {
+        private String name;       
+        private String workingHours; 
+        private double price;     
+
+        // Конструктор класса Attraction
+        public Attraction(String name, String workingHours, double price) {
+            this.name = name;
+            this.workingHours = workingHours;
+            this.price = price;
+        }
+
+        // Метод для отображения информации об аттракционе
+        public void displayInfo() {
+            System.out.println("Аттракцион: " + name);
+            System.out.println("Время работы: " + workingHours);
+            System.out.println("Цена: " + price + " руб.");
+            System.out.println(); // Пустая строка для удобства вывода
+        }
+    }
+
+    // Метод для добавления и отображения аттракционов
+    public void showAttractions() {
+  
+        Attraction attraction1 = new Attraction("Ракушка", "10:00 - 22:00", 300);
+        Attraction attraction2 = new Attraction("Американские горки", "11:00 - 23:00", 450);
+        Attraction attraction3 = new Attraction("Комната страха", "12:00 - 20:00", 500);
+        
+        attraction1.displayInfo();
+        attraction2.displayInfo();
+        attraction3.displayInfo();
+    }
+
+    public static void main(String[] args) {
+        Park park = new Park(); 
+        park.showAttractions(); 
+    }
+}
