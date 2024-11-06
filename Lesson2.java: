@@ -4,7 +4,7 @@ public void printThreeWords() {
     System.out.print("Orange\Banana\Apple");
 }
 
-Задание 2 
+
 
 public class Main {
     public static void main(String[] args) {
@@ -24,7 +24,7 @@ public class Main {
     }
 }
 
-Задание 3 
+
 
 public void printColor() {
     int value = /* любое значение */;
@@ -38,7 +38,6 @@ public void printColor() {
     }
 }
 
-Задание 4 
 
 public void compareNumbers() {
     int a = 11; 
@@ -51,7 +50,7 @@ public void compareNumbers() {
     }
 }
 
-Задание 5 
+
 
 public class Main {
     public static boolean checkSumInRange(int a, int b) {
@@ -67,7 +66,7 @@ public class Main {
     }
 }
 
-Задание 6
+
 
 public class Lesson 2 {
     public static void checkNumber(int number) {
@@ -86,13 +85,13 @@ public class Lesson 2 {
     }
 }
 
-Задание 7
+
 
 public boolean isNegative(int number) {
     return number < 0;
 }
 
-Задание 8
+
 
 public void printString(String str, int count) {
     for (int i = 0; i < count; i++) {
@@ -101,7 +100,7 @@ System.out.println(str);
     }
 }
 
-Задание 9 
+
 
 public class LeapYearChecker {
     public static boolean isLeapYear(int year) {
@@ -115,7 +114,7 @@ public class LeapYearChecker {
     }
 }
 
-Задание 10 
+
 
 public class Lesson2  {
     public static void main(String[] args) {
@@ -135,7 +134,7 @@ public class Lesson2  {
     }
 }
 
-Задание 11 
+
 
 public class Lesson2 {
     public static void main(String[] args) {
@@ -151,7 +150,6 @@ public class Lesson2 {
     }
 }
 
-Задание 12 
 
 
 public class Lesson2 {
@@ -170,7 +168,7 @@ public class Lesson2 {
     }
 }
 
-Задание 13 
+
 
 public class Lesson2 {
     public static void main(String[] args) {
@@ -190,7 +188,7 @@ public class Lesson2 {
     }
 }
 
-Задание 14 
+
 
 public class Lesson2 {
     public static int[] createArray(int len, int initialValue) {
