@@ -1,7 +1,26 @@
+import java.util.ArrayList;
+import java.util.List;
+
+class Attraction {
+    private String name;
+    private String workingTime;
+    private double price;
+
+    public Attraction(String name, String workingTime, double price) {
+        this.name = name;
+        this.workingTime = workingTime;
+        this.price = price;
+    }
+
+    public String toString() {
+        return name + " - Время работы: " + workingTime + ", Цена: " + price + " рублей";
+    }
+}
 
 public class Park {
     private List<Attraction> attractions;
 
+    
     public Park() {
         attractions = new ArrayList<>();
     }
@@ -11,11 +30,24 @@ public class Park {
         attractions.add(attraction);
     }
 
+    
     public void showAttractions() {
+        if (attractions.isEmpty()) {
+            System.out.println("В парке нет аттракционов.");
+            return;
+        }
+        
+        System.out.println("Аттракционы в парке:");
         for (Attraction attraction : attractions) {
             System.out.println(attraction);
         }
     }
 
 
+    public static void main(String[] args) {
+        Park park = new Park();
+        park.addAttraction("Американские горки", "10:00 - 20:00", 500);
+        park.addAttraction("Колесо обозрения", "10:00 - 22:00", 300);
+    }
+}
      
