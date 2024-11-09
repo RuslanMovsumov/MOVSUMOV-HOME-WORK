@@ -1,5 +1,143 @@
-Задание 1 
 
-public class Lesson 4   
+class Animal {
+    String name;
+
+    public Animal(String name) {
+        this.name = name;
+    }
+
+    public void run(int distance) {
+        System.out.println(name + " пробежал " + distance + " м.");
+    }
+
+    public void swim(int distance) {
+        System.out.println(name + " проплыл " + distance + " м.");
+    }
+}
+
+class Dog extends Animal {
+    private static final int MAX_RUN_DISTANCE = 500;
+    private static final int MAX_SWIM_DISTANCE = 10;
+
+    public Dog(String name) {
+        super(name);
+    }
+
+    @Override
+    public void run(int distance) {
+        if (distance <= MAX_RUN_DISTANCE) {
+            super.run(distance);
+        } else {
+            System.out.println(name + " не может пробежать " + distance + " м. Максимальная дистанция - " + MAX_RUN_DISTANCE + " м.");
+        }
+    }
+
+    @Override
+    public void swim(int distance) {
+        if (distance <= MAX_SWIM_DISTANCE) {
+            super.swim(distance);
+        } else {
+            System.out.println(name + " не может проплыть " + distance + " м. Максимальная дистанция - " + MAX_SWIM_DISTANCE + " м.");
+        }
+    }
+}
+
+class Cat extends Animal {
+    private static final int MAX_RUN_DISTANCE = 200;
+    private boolean isFull = false;
+
+    public Cat(String name) {
+        super(name);
+    }
+
+    @Override
+    public void run(int distance) {
+        if (distance <= MAX_RUN_DISTANCE) {
+            super.run(distance);
+        } else {
+            System.out.println(name + " не может пробежать " + distance + " м. Максимальная дистанция - " + MAX_RUN_DISTANCE + " м.");
+        }
+    }
+
+    @Override
+    public void swim(int distance) {
+        System.out.println(name + " не умеет плавать.");
+    }
+
+    public boolean eat(Bowl bowl, int amount) {
+        if (bowl.getFoodAmount() >= amount) {
+            bowl.decreaseFood(amount);
+            isFull = true;
+            System.out.println(name + " поел и теперь сыт.");
+            return true;
+        } else {
+            System.out.println(name + " не хватает еды в миске. Он не ест.");
+            return false;
+        }
+    }
+
+    public boolean isFull() {
+        return isFull;
+    }
+}
+
+// Класс Миска
+class Bowl {
+    private int foodAmount;
+
+    public Bowl(int foodAmount) {
+        this.foodAmount = foodAmount;
+    }
+
+    public int getFoodAmount() {
+        return foodAmount;
+    }
+
+    public void decreaseFood(int amount) {
+        if (foodAmount >= amount) {
+            foodAmount -= amount;
+        } else {
+            foodAmount = 0; 
+        }
+    }
+
+    public void addFood(int amount) {
+        foodAmount += amount;
+        System.out.println("В миску добавлено " + amount + " еды. Теперь в миске " + foodAmount + " еды.");
+    }
+
+    public static void main(String[] args) {
+        // Создаем миску с едой
+        Bowl bowl = new Bowl(30);
+
+        // Создаем массив котов
+        Cat[] cats = {
+            new Cat("Котик 1"),
+            new Cat("Котик 2"),
+            new Cat("Котик 3")
+        };
+
+        // Коты пытаются покушать из миски
+        for (Cat cat : cats) {
+            cat.eat(bowl, 10); // Попробуем накормить каждого кота
+        }
+
+        // Вывод информации о сытости котов
+        for (Cat cat : cats) {
+            System.out.println(cat.name + " сыт: " + cat.isFull());
+        }
+
+        // Добавляем больше еды в миску и пробуем опять
+        bowl.addFood(20);
+        for (Cat cat : cats) {
+            cat.eat(bowl, 15); // Попробуем накормить каждого кота снова
+        }
+
+        // Проверяем сытость после добавления еды
+        for (Cat cat : cats) {
+            System.out.println(cat.name + " сыт: " + cat.isFull());
+        }
+    }
+} 
    
             
