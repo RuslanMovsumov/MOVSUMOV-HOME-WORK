@@ -1,3 +1,5 @@
+package org.example;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +19,7 @@ class Attraction {
     }
 }
 
-public class Park {
+public class Park.java {
     private List<Attraction> attractions;
 
     public Park() {
