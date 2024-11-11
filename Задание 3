@@ -20,7 +20,6 @@ class Attraction {
 public class Park {
     private List<Attraction> attractions;
 
-    
     public Park() {
         attractions = new ArrayList<>();
     }
@@ -30,7 +29,6 @@ public class Park {
         attractions.add(attraction);
     }
 
-    
     public void showAttractions() {
         if (attractions.isEmpty()) {
             System.out.println("В парке нет аттракционов.");
@@ -42,7 +40,6 @@ public class Park {
             System.out.println(attraction);
         }
     }
-
 
     public static void main(String[] args) {
         Park park = new Park();
