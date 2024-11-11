@@ -1,4 +1,3 @@
-
 class Animal {
     String name;
 
@@ -40,7 +39,6 @@ class Dog extends Animal {
             System.out.println(name + " не может проплыть " + distance + " м. Максимальная дистанция - " + MAX_SWIM_DISTANCE + " м.");
         }
     }
-}
 
 class Cat extends Animal {
     private static final int MAX_RUN_DISTANCE = 200;
@@ -119,7 +117,7 @@ class Bowl {
 
         // Коты пытаются покушать из миски
         for (Cat cat : cats) {
-            cat.eat(bowl, 10); // Попробуем накормить каждого кота
+            cat.eat(bowl, 10);
         }
 
         // Вывод информации о сытости котов
@@ -138,6 +136,6 @@ class Bowl {
             System.out.println(cat.name + " сыт: " + cat.isFull());
         }
     }
-} 
+
    
             
