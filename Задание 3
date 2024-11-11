@@ -3,22 +3,6 @@ package org.example;
 import java.util.ArrayList;
 import java.util.List;
 
-class Attraction {
-    private String name;
-    private String workingTime;
-    private double price;
-
-    public Attraction(String name, String workingTime, double price) {
-        this.name = name;
-        this.workingTime = workingTime;
-        this.price = price;
-    }
-
-    public String toString() {
-        return name + " - Время работы: " + workingTime + ", Цена: " + price + " рублей";
-    }
-}
-
 public class Park.java {
     private List<Attraction> attractions;
 
@@ -47,6 +31,23 @@ public class Park.java {
         Park park = new Park();
         park.addAttraction("Американские горки", "10:00 - 20:00", 500);
         park.addAttraction("Колесо обозрения", "10:00 - 22:00", 300);
+        park.showAttractions();
+    }
+} 
+
+class Attraction {
+    private String name;
+    private String workingTime;
+    private double price;
+
+    public Attraction(String name, String workingTime, double price) {
+        this.name = name;
+        this.workingTime = workingTime;
+        this.price = price;
+    }
+
+    public String toString() {
+        return name + " - Время работы: " + workingTime + ", Цена: " + price + " рублей";
     }
 }
      
