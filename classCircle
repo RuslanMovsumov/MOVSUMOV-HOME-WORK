@@ -48,10 +48,8 @@ public class Main {
     public static void main(String[] args) {
         Circle circle = new Circle(5.0, "Red", "Black");
         System.out.println("Площадь: " + circle.calculateArea());
-        circle.printPerimeter();  // Использование метода по умолчанию из интерфейса
+        circle.printPerimeter();  
         System.out.println("Цвет заливки: " + circle.getFillColor());
         System.out.println("Цвет границы: " + circle.getBorderColor());
     }
 }
-
-
