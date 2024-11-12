@@ -1,8 +1,8 @@
 public class Main {
     public static void main(String[] args) {
         Shape circle = new Circle(5, "Красный", "Черный");
-        Shape rectangle = new Rectangle(4, 6, "Синий", "Зеленый");
-        Shape triangle = new Triangle(3, 4, 5, "Желтый", "Фиолетовый");
+        Shape rectangle = new Rectangle(4, 6, "Бирюзовый", "Зеленый");
+        Shape triangle = new Triangle(3, 4, 5, "Белый", "Фиолетовый");
 
         printShapeDetails(circle);
         printShapeDetails(rectangle);
