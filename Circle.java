@@ -12,12 +12,12 @@ public class Circle implements Shape {
 
     @Override
     public double calculateArea() {
-        return  radius  radius;  // Площадь круга
+        return Math.PI  radius  radius;  // Площадь круга
     }
 
     @Override
     public double calculatePerimeter() {
-        return   radius;  // Периметр круга
+        return 2  Math.PI  radius;  // Периметр круга
     }
 
     @Override
