@@ -1,4 +1,4 @@
-// InterfaceNameable.java
+// Interfaceable.java
 public interface Nameablejava {
     double calculateArea();
     double calculatePerimeter();
