@@ -1,16 +1,20 @@
-class Triangle implements Shape {
+public class Triangle implements Shape {
+    // Стороны треугольника
     private double sideA;
     private double sideB;
     private double sideC;
-    private String fillColor;
-    private String borderColor;
 
+    // Цвета заливки и границ
+    private String fillColor;
+    private String blueColor;
+
+    
     public Triangle(double sideA, double sideB, double sideC, String fillColor, String borderColor) {
         this.sideA = sideA;
         this.sideB = sideB;
         this.sideC = sideC;
         this.fillColor = fillColor;
-        this.borderColor = borderColor;
+        this.blueColor = blueColor;
     }
 
     @Override
@@ -30,7 +34,7 @@ class Triangle implements Shape {
     }
 
     @Override
-    public String getBorderColor() {
-        return borderColor;
+    public String getblueColor() {
+        return blueColor;
     }
 }
