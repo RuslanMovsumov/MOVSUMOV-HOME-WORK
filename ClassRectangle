@@ -1,4 +1,13 @@
-class Rectangle implements Shape {
+// InterfaceNameable1.java
+public interface Shape {
+    double calculateArea();
+    double calculatePerimeter();
+    String getFillColor();
+    String getBorderColor();
+}
+
+// Rectangle.java
+public class Rectangle implements Shape {
     private double width;
     private double height;
     private String fillColor;
@@ -13,12 +22,12 @@ class Rectangle implements Shape {
 
     @Override
     public double calculateArea() {
-        return width * height;
+        return width  height;
     }
 
     @Override
     public double calculatePerimeter() {
-        return 2 * (width + height);
+        return 2  (width + height);
     }
 
     @Override
