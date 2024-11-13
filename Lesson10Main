@@ -1,0 +1,33 @@
+public class Main {
+public static void main(String[] args) {
+        // Создаем миску с едой
+        Bowl bowl = new Bowl(30);
+
+        // Создаем массив котов
+        Cat[] cats = {
+            new Cat("Котик 1"),
+            new Cat("Котик 2"),
+            new Cat("Котик 3")
+        };
+
+        // Коты пытаются покушать из миски
+        for (Cat cat : cats) {
+            cat.eat(bowl, 10);
+        }
+
+        // Вывод информации о сытости котов
+        for (Cat cat : cats) {
+            System.out.println(cat.name + " сыт: " + cat.isFull());
+        }
+
+        // Добавляем больше еды в миску и пробуем опять
+        bowl.addFood(20);
+        for (Cat cat : cats) {
+            cat.eat(bowl, 15); // Попробуем накормить каждого кота снова
+        }
+
+        // Проверяем сытость после добавления еды
+        for (Cat cat : cats) {
+            System.out.println(cat.name + " сыт: " + cat.isFull());
+        }
+    }
