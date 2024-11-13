@@ -1,5 +1,5 @@
 // Interfaceable.java
-public interface Nameablejava {
+public interface Nameable.java {
     double calculateArea();
     double calculatePerimeter();
     String getFillColor();
