@@ -9,7 +9,7 @@ class Person.java {
     private int age;
 
     // Конструктор класса
-    public Person.java(String fullName, String position, String email, String phone, double salary, int age) {
+    public Person(String fullName, String position, String email, String phone, double salary, int age) {
         this.fullName = fullName;
         this.position = position;
         this.email = email;
