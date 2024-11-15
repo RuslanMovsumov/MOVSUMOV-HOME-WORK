@@ -1,5 +1,5 @@
 // Основной класс для тестирования
-public class Main.java {
+public class Main {
     public static void main(String[] args) {
         Dog dog = new Dog("Барбос");
         Cat cat1 = new Cat("Матильда");
