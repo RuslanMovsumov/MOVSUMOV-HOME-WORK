@@ -3,7 +3,7 @@ class Cat.java extends Animal.java {
     private static final int MAX_SWIM_DISTANCE = 0; // Кот не умеет плавать
     private boolean isFull = false;
 
-    public Cat.java (String name) {
+    public Cat(String name) {
         super(name);
     }
 
