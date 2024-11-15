@@ -1,4 +1,4 @@
-class Bowl {
+class Bowl.java {
     private int food;
 
     public Bowl(int food) {
