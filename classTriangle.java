@@ -1,9 +1,9 @@
-class Triangle extends Shape {
+class Triangle.java extends Shape {
    private double a;
    private double b;
    private double c;
 
-   public Triangle(double a, double b, double c, String fillColor, String borderColor) {
+   public Triangle.java (double a, double b, double c, String fillColor, String borderColor) {
       super(fillColor, borderColor);
       this.a = a;
       this.b = b;
