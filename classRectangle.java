@@ -1,8 +1,8 @@
-class Rectangle extends Shape {
+class Rectangle.java extends Shape {
    private double length;
    private double width;
 
-   public Rectangle(double length, double width, String fillColor, String borderColor) {
+   public Rectangle.java (double length, double width, String fillColor, String borderColor) {
       super(fillColor, borderColor);
       this.length = length;
       this.width = width;
