@@ -1,4 +1,4 @@
-abstract class Animal {
+abstract class Animal.java {
     String name;
     // Статическая переменная для подсчета объектов
     static int count = 0;
