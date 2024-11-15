@@ -1,4 +1,4 @@
-class Triangle.java extends Shape {
+class Triangle extends Shape {
    private double a;
    private double b;
    private double c;
