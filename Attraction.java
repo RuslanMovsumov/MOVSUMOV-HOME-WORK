@@ -1,4 +1,4 @@
-class Attraction.java {
+class Attraction {
     private String name;
     private String workingTime;
     private double price;
