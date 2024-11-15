@@ -2,7 +2,7 @@ class Dog.java extends Animal.java {
     private static final int MAX_RUN_DISTANCE = 500; // Максимальная дистанция бега для собаки
     private static final int MAX_SWIM_DISTANCE = 10; // Максимальная дистанция плавания для собаки
 
-    public Dog.java (String name) {
+    public Dog(String name) {
         super(name);
     }
 
