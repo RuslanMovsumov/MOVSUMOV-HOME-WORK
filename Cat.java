@@ -1,4 +1,4 @@
-class Cat.java extends Animal.java {
+class Cat extends Animal {
     private static final int MAX_RUN_DISTANCE = 200; // Максимальная дистанция бега для кота
     private static final int MAX_SWIM_DISTANCE = 0; // Кот не умеет плавать
     private boolean isFull = false;
