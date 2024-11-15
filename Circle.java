@@ -1,5 +1,5 @@
 
-class Circle.java extends Shape {
+class Circle extends Shape {
    private double radius;
 
    public Circle (double radius, String fillColor, String borderColor) {
