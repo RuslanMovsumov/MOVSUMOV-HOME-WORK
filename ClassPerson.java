@@ -1,5 +1,5 @@
  
-class Person {
+class Person.java {
 
     private String fullName;
     private String position;
@@ -9,7 +9,7 @@ class Person {
     private int age;
 
     // Конструктор класса
-    public Person(String fullName, String position, String email, String phone, double salary, int age) {
+    public Person.java(String fullName, String position, String email, String phone, double salary, int age) {
         this.fullName = fullName;
         this.position = position;
         this.email = email;
