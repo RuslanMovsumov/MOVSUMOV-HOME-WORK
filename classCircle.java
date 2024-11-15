@@ -2,7 +2,7 @@
 class Circle.java extends Shape {
    private double radius;
 
-   public Circle.java (double radius, String fillColor, String borderColor) {
+   public Circle (double radius, String fillColor, String borderColor) {
       super(fillColor, borderColor);
       this.radius = radius;
    }
