@@ -6,7 +6,7 @@ import java.util.List;
 public class Park.java {
     private List<Attraction> attractions;
 
-    public Park() {
+    public Park.java() {
         attractions = new ArrayList<>();
     }
 
