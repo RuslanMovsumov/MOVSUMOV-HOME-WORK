@@ -1,5 +1,5 @@
  
-class Person.java {
+class Person {
 
     private String fullName;
     private String position;
