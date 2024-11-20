@@ -18,9 +18,23 @@
             {"13", "14", "15", "16"}
         };
 
+       // Проверка валидного массива
         try {
             System.out.println("Сумма элементов: " + sumArray(validArray));
+       } catch (MyArraySizeException | MyArrayDataException e) {
+            System.err.println(e.getMessage());
+        }
 
+      // Проверка массива с некорректным размером
+        try {
+            System.out.println("Сумма элементов (некорректный размер): " + calculateArraySum(invalidArraySize));
+        } catch (MyArraySizeException | MyArrayDataException e) {
+            System.err.println(e.getMessage());
+        }
+
+        // Проверка массива с некорректными данными
+        try {
+            System.out.println("Сумма элементов (некорректные данные): " + calculateArraySum(invalidArrayData));
         } catch (MyArraySizeException | MyArrayDataException e) {
             System.err.println(e.getMessage());
         }
