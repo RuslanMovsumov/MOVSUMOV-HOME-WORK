@@ -1,21 +1,39 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-class PhoneBook {
-    private Map<String, List<String>> contacts;
+public class PhoneBook {
+    private Map<String, List<String>> phoneBook;
 
     public PhoneBook() {
-        contacts = new HashMap<>();
+        phoneBook = new HashMap<>();
     }
 
+    // Метод для добавления записи
     public void add(String surname, String phoneNumber) {
-        contacts.putIfAbsent(surname, new ArrayList<>());
-        contacts.get(surname).add(phoneNumber);
+        phoneBook.putIfAbsent(surname, new ArrayList<>());
+        phoneBook.get(surname).add(phoneNumber);
     }
 
-    // Метод для получения списка номеров по фамилии
+    // Метод для поиска номера телефона по фамилии
     public List<String> get(String surname) {
-        // Возвращаем список номеров по фамилии или пустой список, если фамилия не найдена
-        return contacts.getOrDefault(surname, Collections.emptyList());
+        return phoneBook.getOrDefault(surname, new ArrayList<>());
     }
 
-    
+    public static void main(String[] args) {
+        PhoneBook phoneBook = new PhoneBook();
+        
+        // Добавляем записи
+        phoneBook.add("Мовсумов", "123-45-67");
+        phoneBook.add("Гордей", "89-00-00");
+        phoneBook.add("Смирнов", "77-88-99");
+        phoneBook.add("Толкачев", "11-22-33");
+
+        // Поиск по фамилии
+        System.out.println("Телефоны Мовсумова: " + phoneBook.get("Мовсумов"));
+        System.out.println("Телефоны Гордея: " + phoneBook.get("Гордей"));
+        System.out.println("Телефоны Смирнова: " + phoneBook.get("Смирнов"));
+        System.out.println("Телефоны Толкачева: " + phoneBook.get("Толкачев")); // не существует
+    }
+}
