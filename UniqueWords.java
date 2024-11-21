@@ -1,11 +1,11 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class UniqueWordsExample {
+public class UniqueWords {
     public static void main(String[] args) {
         String[] words = {
             "банан", "яблоко", "груша", "яблоко", "виноград", 
-            "груша", "персик", "банан", "яблоко", "вишня", 
+            "груша", "персик", "банан", "гранат", "вишня", 
             "апельсин", "виноград", "груша", "яблоко", "груша"
         };
 
