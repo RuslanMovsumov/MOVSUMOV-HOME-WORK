@@ -10,7 +10,4 @@ public class FactorialCalculator {
         return result;
     }
 
-    public static void main(String[] args) {
-        System.out.println("Факториал 5: " + factorial(5)); // Должно вывести 120
-    }
-}
+    
