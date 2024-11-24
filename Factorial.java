@@ -1,4 +1,4 @@
-public class FactorialCalculator {
+public class Factorial {
     public static long factorial(int n) {
         if (n < 0) {
             throw new IllegalArgumentException("Число должно быть неотрицательным");
