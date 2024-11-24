@@ -1,6 +1,6 @@
 import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.expectThrows;
+import static org.testng.Assert.assertThrows;
 
 public class FactorialTestNG {
 
@@ -16,7 +16,7 @@ public class FactorialTestNG {
 
     @Test
     public void testFactorialOfNegativeNumber() {
-        expectThrows(IllegalArgumentException.class, () -> {
+        assertThrows(IllegalArgumentException.class, () -> {
             Factorial.calculateFactorial(-1);
         });
     }
