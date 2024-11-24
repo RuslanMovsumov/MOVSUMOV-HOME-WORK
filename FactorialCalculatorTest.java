@@ -19,4 +19,4 @@ public class FactorialCalculatorTest {
             FactorialCalculator.factorial(-1);
         });
     }
-}
+
