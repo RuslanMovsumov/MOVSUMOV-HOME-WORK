@@ -1,5 +1,5 @@
 public class Factorial {
-    public static long factorial(int n) {
+    public static long calculateFactorial(int n) {
         if (n < 0) {
             throw new IllegalArgumentException("Число должно быть неотрицательным");
         }
@@ -9,5 +9,6 @@ public class Factorial {
         }
         return result;
     }
+}
 
     
