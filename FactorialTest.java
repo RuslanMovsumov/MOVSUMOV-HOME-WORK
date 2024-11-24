@@ -19,5 +19,9 @@ public class FactorialTest {
             Factorial.calculateFactorial(-1);
         });
     }
-}
 
+    @Test
+    public void testFactorialOfLargeNumber() {
+        assertEquals(3628800, Factorial.calculateFactorial(10));
+    }
+}
