@@ -25,6 +25,4 @@ public class FactorialTest {
         });
     }
 
-    assertEquals("Факториал не определен для отрицательных чисел.", exception.getMessage());
-    }
-}
+   
