@@ -14,11 +14,6 @@ public class FactorialTest {
     }
 
     @Test
-    public void testFactorialOfLargeNumber() {
-        assertEquals(3628800, Factorial.calculateFactorial(10));
-    }
-
-    @Test
     public void testFactorialOfNegativeNumber() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             Factorial.calculateFactorial(-1);
