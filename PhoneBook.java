@@ -19,8 +19,15 @@ public class PhoneBook {
     // Метод для поиска номера телефона по фамилии
     public List<String> get(String surname) {
         return phoneBook.getOrDefault(surname, new ArrayList<>());
+    } 
+   
+    // Метод для вывода всех записей
+    public void printAllEntries() {
+        for (Map.Entry<String, List<String>> entry : phoneBook.entrySet()) {
+            System.out.println("Фамилия: " + entry.getKey() + ", Номера: " + entry.getValue());
+        }
     }
-
+    
     public static void main(String[] args) {
         PhoneBook phoneBook = new PhoneBook();
         
@@ -35,5 +42,8 @@ public class PhoneBook {
         System.out.println("Телефоны Гордея: " + phoneBook.get("Гордей"));
         System.out.println("Телефоны Смирнова: " + phoneBook.get("Смирнов"));
         System.out.println("Телефоны Толкачева: " + phoneBook.get("Толкачев")); // не существует
+    
+       // Печатаем все записи
+        phoneBook.printAllEntries();
     }
 }
