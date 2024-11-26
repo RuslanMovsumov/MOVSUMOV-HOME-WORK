@@ -1,7 +1,7 @@
 public class Factorial {
     public static long calculateFactorial(int n) {
         if (n < 0) {
-            throw new IllegalArgumentException("Факториал не определен для отрицательных чисел");
+            throw new IllegalArgumentException("Число не должно быть отрицательным");
         }
         long result = 1;
         for (int i = 1; i <= n; i++) {
