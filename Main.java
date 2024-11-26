@@ -1,3 +1,4 @@
+public class Main {
   public static void main(String[] args) {
         String[][] validArray = {
             {"1", "2", "3", "4"},
