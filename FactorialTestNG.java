@@ -1,7 +1,7 @@
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class FactorialTest {
+public class FactorialTestNG {
     
     @Test
     public void testFactorialOfZero() {
