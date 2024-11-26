@@ -14,14 +14,17 @@ public class FactorialTest {
     }
 
     @Test
+    public void testFactorialOfLargeNumber() {
+        assertEquals(3628800, Factorial.calculateFactorial(10));
+    }
+
+    @Test
     public void testFactorialOfNegativeNumber() {
         assertThrows(IllegalArgumentException.class, () -> {
             Factorial.calculateFactorial(-1);
         });
     }
 
-    @Test
-    public void testFactorialOfLargeNumber() {
-        assertEquals(3628800, Factorial.calculateFactorial(10));
+    assertEquals("Факториал не определен для отрицательных чисел.", exception.getMessage());
     }
 }
