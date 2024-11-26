@@ -20,7 +20,7 @@ public class FactorialTest {
 
     @Test
     public void testFactorialOfNegativeNumber() {
-        assertThrows(IllegalArgumentException.class, () -> {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
             Factorial.calculateFactorial(-1);
         });
     }
