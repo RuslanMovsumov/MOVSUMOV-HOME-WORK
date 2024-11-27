@@ -22,23 +22,6 @@
             <scope>test</scope>
         </dependency>
         
-        <!-- TestNG dependency -->
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>7.4.0</version>
-            <scope>test</scope>
-        </dependency>
+     
         
-        <!-- Другие зависимости проекта -->
-    </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M5</version>
-            </plugin>
-        </plugins>
-    </build>
-</project>
+  
