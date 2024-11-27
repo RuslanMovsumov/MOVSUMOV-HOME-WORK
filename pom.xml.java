@@ -20,21 +20,27 @@
             <version>5.7.0</version>
             <scope>test</scope>
         </dependency>
-    
+         
+        <!-- TestNG dependency -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.3.0</version>
+            <version>7.4.0</version>
             <scope>test</scope>
         </dependency>
-    </dependencies>
- 
-     <build>
+    </dependencies> 
+
+    <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
             </plugin>
         </plugins>
     </build>
