@@ -1,4 +1,3 @@
-// src/test/java/com/example/FactorialTest.java
 package com.example;
 
 import org.junit.jupiter.api.Test;
