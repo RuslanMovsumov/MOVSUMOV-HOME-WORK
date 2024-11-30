@@ -11,7 +11,7 @@ public class OnlineRechargeTest {
     @Before
     public void setUp() {
         driver = new ChromeDriver();
-        driver.get("URL_вашего_сайта");  // Замените на реальный URL
+        driver.get("https://www.mts.by/");  
         onlineRechargePage = new OnlineRechargePage(driver);
     }
 
