@@ -29,7 +29,6 @@ public class OnlineRechargeTest {
         // Заполняем информацию и нажимаем кнопку "Продолжить"
         onlineRechargePage.fillConnectionServices("1234567890");
 
-        // Замените "Ожидаемая сумма" на правильное значение, которое ваше приложение должно отображать
         String expectedAmount = "Ожидаемая сумма"; 
         String expectedPhoneNumber = "297777777"; 
 
