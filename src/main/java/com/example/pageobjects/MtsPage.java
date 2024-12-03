@@ -5,7 +5,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import java.util.List;
 
-public class OnlineRechargePage {
+public class MtsPage {
     private WebDriver driver;
 
     @FindBy(id = "services_field")
@@ -32,7 +32,7 @@ public class OnlineRechargePage {
     @FindBy(className = "payment_system_icon")
     private List<WebElement> paymentSystemIcons;
 
-    public OnlineRechargePage(WebDriver driver) {
+    public MtsPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
