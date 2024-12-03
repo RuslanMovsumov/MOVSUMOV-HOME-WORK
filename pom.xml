@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>my.factorial</groupId>
-    <artifactId>my-factorial-calculator</artifactId>
+    <artifactId>my-factorial</artifactId>
     <version>1.0-SNAPSHOT</version>
     <dependencies>
         <!-- JUnit 5 -->
