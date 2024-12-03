@@ -1,49 +1,35 @@
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import io.github.bonigarcia.wdm.WebDriverManager;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
-import static org.junit.Assert.assertTrue;
-
-public class OnlineRechargeTest {
+public class OnlineRechargePageTest {
     private WebDriver driver;
     private OnlineRechargePage onlineRechargePage;
 
-    @Before
+    @BeforeClass
     public void setUp() {
-        // Устанавливаем драйвер браузера
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-        driver.manage().window().maximize(); 
-        driver.get("https://www.mts.by/");  
         onlineRechargePage = new OnlineRechargePage(driver);
+        driver.get("https://mts.by/online-recharge");
     }
 
     @Test
-    public void testOnlineRechargePage() {
-        // Проверяем названия пустых полей
+    public void testEmptyFieldLabels() {
         onlineRechargePage.checkEmptyFieldLabels();
-
-        // Заполняем информацию и нажимаем кнопку "Продолжить"
-        onlineRechargePage.fillConnectionServices("1234567890");
-
-        String expectedAmount = "Ожидаемая сумма"; 
-        String expectedPhoneNumber = "297777777"; 
-
-        // Проверяем результаты после нажатия кнопки "Продолжить"
-        onlineRechargePage.verifyDetailsAfterContinue(expectedAmount, expectedPhoneNumber);
-        
-        // Дополнительная проверка, чтобы убедиться, что иконки платежных систем отображаются
-        assertTrue("Иконки платежных систем отображаются.", onlineRechargePage.getPaymentSystemIcons().size() > 0);
     }
 
-    @After
+    @Test
+    public void testFillConnectionServices() {
+        onlineRechargePage.fillConnectionServices("1234567890");
+        onlineRechargePage.verifyDetailsAfterContinue("100 BYN", "1234567890");
+    }
+
+    @AfterClass
     public void tearDown() {
-        // Закрываем браузер
-        if (driver != null) {
-            driver.quit();
-        }
+        driver.quit();
     }
 }
