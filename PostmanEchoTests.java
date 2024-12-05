@@ -41,7 +41,6 @@ public class PostmanEchoTests {
         CloseableHttpClient httpClient = HttpClients.createDefault();
         HttpPost request = new HttpPost(BASE_URL + endpoint);
         
-        // Пример данных для отправки
         JSONObject json = new JSONObject();
         json.put("foo", "bar");
         StringEntity entity = new StringEntity(json.toString());
@@ -67,7 +66,6 @@ public class PostmanEchoTests {
         CloseableHttpClient httpClient = HttpClients.createDefault();
         HttpPut request = new HttpPut(BASE_URL + endpoint);
         
-        // Пример данных для отправки
         JSONObject json = new JSONObject();
         json.put("foo", "updatedBar");
         StringEntity entity = new StringEntity(json.toString());
