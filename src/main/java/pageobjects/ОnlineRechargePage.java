@@ -8,7 +8,6 @@ import java.util.List;
 
 public class OnlineRechargePage extends BasePage {
 
-    // Locators
     private By blockTitle = By.xpath("//h2[contains(text(), 'Онлайн пополнение без комиссии')]");
     private By paymentSystemLogos = By.cssSelector(".payment-systems img");
     private By moreInfoLink = By.linkText("Подробнее о сервисе");
