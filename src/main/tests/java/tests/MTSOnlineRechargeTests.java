@@ -14,16 +14,23 @@ public class MTSOnlineRechargeTests {
     private WebDriver driver;
     private OnlineRechargePage onlineRechargePage;
 
-    @BeforeEach
-    public void setUp() {
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--incognito"); // Открываем в режиме инкогнито
-        driver = new ChromeDriver(options);
-        driver.manage().window().maximize(); // Разворачиваем окно браузера
-        driver.get("https://mts.by");
-        onlineRechargePage = new OnlineRechargePage(driver);
-    }
+   @BeforeEach
+public void setUp() {
+    WebDriverManager.chromedriver().setup();
+    ChromeOptions options = new ChromeOptions();
+    options.addArguments("--incognito"); // Открываем в режиме инкогнито
+    driver = new ChromeDriver(options);
+    driver.manage().window().maximize(); // Разворачиваем окно браузера
+
+    driver.get("https://mts.by");
+
+    // Принятие cookie
+    driver.switchTo().activeElement();
+    driver.findElement(By.cssSelector("#cookie-agree")).click();
+    driver.switchTo().defaultContent();
+
+    onlineRechargePage = new OnlineRechargePage(driver);
+}
 
     @Test
     public void testBlockTitle() {
