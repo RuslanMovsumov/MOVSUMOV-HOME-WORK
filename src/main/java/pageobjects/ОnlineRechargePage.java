@@ -3,17 +3,17 @@ package pageobjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class OnlineRechargePage extends BasePage {
 
-    private By blockTitle = By.xpath("//h2[contains(text(), 'Онлайн пополнение без комиссии')]");
-    private By paymentSystemLogos = By.cssSelector(".payment-systems img");
+    private By blockTitle = By.xpath("//h2[contains(text(), 'Онлайн пополнение')]");
+    private By paymentSystemLogos = By.cssSelector(".pay__partners img");
     private By moreInfoLink = By.linkText("Подробнее о сервисе");
     private By serviceTypeSelect = By.id("serviceType");
     private By phoneNumberField = By.id("phoneNumber");
-    private By continueButton = By.id("continueButton");
+    private By continueButton = By.xpath("//button[contains(text(), 'Продолжить')]");
     private By resultMessage = By.id("resultMessage");
 
     public OnlineRechargePage(WebDriver driver) {
@@ -24,9 +24,13 @@ public class OnlineRechargePage extends BasePage {
         return driver.findElement(blockTitle).getText();
     }
 
-    public boolean arePaymentSystemLogosPresent() {
+    public List arePaymentSystemLogosPresent() {
         List<WebElement> logos = driver.findElements(paymentSystemLogos);
-        return !logos.isEmpty();
+        List<String> altsLogo = new ArrayList<>();
+        for (WebElement element : logos) {
+            altsLogo.add(element.getAttribute("alt"));
+        }
+    return altsLogo;
     }
 
     public void clickMoreInfoLink() {
