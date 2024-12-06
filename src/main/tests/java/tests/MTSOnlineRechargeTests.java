@@ -30,9 +30,20 @@ public class MTSOnlineRechargeTests {
         assertEquals("Онлайн пополнение без комиссии", onlineRechargePage.getBlockTitle());
     }
 
-    @Test
+  @Test
     public void testPaymentSystemLogos() {
-        assertTrue(onlineRechargePage.arePaymentSystemLogosPresent());
+        List<String> actualLogoList = onlineRechargePage.arePaymentSystemLogosPresent();
+        if (actualLogoList.isEmpty()) {
+            fail("Логотипы не найдены");
+        }
+
+        assertAll(
+            () -> { assertTrue(actualLogoList.contains("Visa")); },
+            () -> { assertTrue(actualLogoList.contains("Verified By Visa")); },
+            () -> { assertTrue(actualLogoList.contains("MasterCard")); },
+            () -> { assertTrue(actualLogoList.contains("MasterCard Secure Code")); },
+            () -> { assertTrue(actualLogoList.contains("Белкарт")); }
+        );
     }
 
     @Test
