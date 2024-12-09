@@ -18,15 +18,31 @@ public class OnlineRechargePageTest {
     }
 
     @Test
-    public void testEmptyFieldLabels() {
-        onlineRechargePage.checkEmptyFieldLabels();
-    }
+public void testEmptyFieldPlaceholders() {
+    onlineRechargePage.selectServiceType("Услуги связи");
+    onlineRechargePage.enterPhoneNumber(""); 
+    onlineRechargePage.clickContinueButton();
+
+    assertEquals("Введите номер карты", onlineRechargePage.getEmptyFieldPlaceholder()); 
+}
 
     @Test
-    public void testFillConnectionServices() {
-        onlineRechargePage.fillConnectionServices("1234567890");
-        onlineRechargePage.verifyDetailsAfterContinue("100 BYN", "1234567890");
-    }
+public void testServicePaymentDetails() {
+    onlineRechargePage.selectServiceType("Услуги связи");
+    onlineRechargePage.enterPhoneNumber("297777777");
+    onlineRechargePage.clickContinueButton();
+
+    assertEquals("Ожидаемая сумма", onlineRechargePage.getDisplayedAmount());
+    assertEquals("297777777", onlineRechargePage.getDisplayedPhone());
+
+    assertEquals("Введите номер карты", onlineRechargePage.getEmptyFieldPlaceholder());
+    assertEquals("Введите срок действия карты", onlineRechargePage.getEmptyFieldPlaceholder());
+    assertEquals("Введите CVC", onlineRechargePage.getEmptyFieldPlaceholder());
+
+    List<String> actualLogos = onlineRechargePage.getPaymentSystemLogos();
+    assertTrue(actualLogos.contains("Visa"));
+    assertTrue(actualLogos.contains("MasterCard"));
+}
 
     @AfterClass
     public void tearDown() {
