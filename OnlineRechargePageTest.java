@@ -10,6 +10,7 @@ import io.qameta.allure.Story;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
+
 import java.util.List;
 
 public class OnlineRechargePageTest {
@@ -28,32 +29,33 @@ public class OnlineRechargePageTest {
     @Description("Проверка наполнения пустых полей ввода на странице онлайн-пополнения")
     @Story("Проверка обязательных полей ввода")
     public void testEmptyFieldPlaceholders() {
-        onlineRechargePage.selectServiceType("Услуги связи");
+        performServiceTypeSelection("Услуги связи");
         onlineRechargePage.enterPhoneNumber(""); 
         onlineRechargePage.clickContinueButton();
 
         assertEquals("Введите номер карты", onlineRechargePage.getCardNumberPlaceholder());
-        assertEquals("Введите срок действия карты", onlineRechargePage.getCardExpiryPlaceholder());
-        assertEquals("Введите CVC", onlineRechargePage.getCvcPlaceholder());
+        assertEquals("Введите срок действия карты", onlineRechargePage.getExpirationDatePlaceholder());
+        assertEquals("Введите CVC", onlineRechargePage.getCVCPlaceholder());
     }
 
     @Test
     @Description("Тестирование отображения данных при оплате услуг связи")
     @Story("Проверка успешной оплаты услуг")
     public void testServicePaymentDetails() {
-        onlineRechargePage.selectServiceType("Услуги связи");
+        performServiceTypeSelection("Услуги связи");
         onlineRechargePage.enterPhoneNumber("297777777");
         onlineRechargePage.clickContinueButton();
 
-        assertEquals("Ожидаемая сумма", onlineRechargePage.getDisplayedAmount());
-        assertEquals("297777777", onlineRechargePage.getDisplayedPhone());
-        assertEquals("Введите номер карты", onlineRechargePage.getCardNumberPlaceholder());
-        assertEquals("Введите срок действия карты", onlineRechargePage.getCardExpiryPlaceholder());
-        assertEquals("Введите CVC", onlineRechargePage.getCvcPlaceholder());
+        assertEquals("Ожидаемая сумма", onlineRechargePage.getDisplayedAmount(), "Корректная ожидаемая сумма");
+        assertEquals("297777777", onlineRechargePage.getDisplayedPhone(), "Корректный номер телефона");
 
         List<String> actualLogos = onlineRechargePage.getPaymentSystemLogos();
-        assertTrue(actualLogos.contains("Visa"));
-        assertTrue(actualLogos.contains("MasterCard"));
+        assertTrue(actualLogos.contains("Visa"), "Логотип Visa");
+        assertTrue(actualLogos.contains("MasterCard"), "Логотип MasterCard");
+    }
+
+    private void performServiceTypeSelection(String serviceType) {
+        onlineRechargePage.selectServiceType(serviceType);
     }
 
     @AfterClass
@@ -62,4 +64,4 @@ public class OnlineRechargePageTest {
             driver.quit();
         }
     }
-  }
+}
