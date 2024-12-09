@@ -1,59 +1,55 @@
+package pageobjects;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import java.util.List;
 
 public class OnlineRechargePage {
     private WebDriver driver;
 
-    @FindBy(id = "services_field")
-    private WebElement connectionServicesField;
-
-    @FindBy(id = "home_internet_field")
-    private WebElement homeInternetField;
-
-    @FindBy(id = "installment_field")
-    private WebElement installmentField;
-
-    @FindBy(id = "debt_field")
-    private WebElement debtField;
-
-    @FindBy(id = "continue_button")
-    private WebElement continueButton;
-
-    @FindBy(id = "phone_number_field")
-    private WebElement phoneNumberField;
-
-    @FindBy(id = "card_number_field")
-    private WebElement cardNumberField;
-
-    @FindBy(className = "payment_system_icon")
-    private List<WebElement> paymentSystemIcons;
+    private By serviceTypeDropdown = By.id("service-type-dropdown");
+    private By phoneNumberInput = By.id("phone-number-input");
+    private By continueButton = By.id("continue-button");
+    private By amountDisplay = By.id("amount-display");
+    private By phoneDisplay = By.id("phone-display");
+    private By cardNumberInput = By.id("card-number-input");
+    private By cardExpiryInput = By.id("card-expiry-input");
+    private By cardCvcInput = By.id("card-cvc-input");
+    private By paymentSystemLogos = By.cssSelector(".payment-system-logo");
+    
+    private By emptyFieldPlaceholder = By.className("empty-field-placeholder");
 
     public OnlineRechargePage(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver, this);
     }
 
-    public void checkEmptyFieldLabels() {
-        assert connectionServicesField.getAttribute("placeholder").equals("Введите услуги связи");
-        assert homeInternetField.getAttribute("placeholder").equals("Введите домашний интернет");
-        assert installmentField.getAttribute("placeholder").equals("Введите рассрочку");
-        assert debtField.getAttribute("placeholder").equals("Введите задолженность");
+    public void selectServiceType(String serviceType) {
+        // Логика выбора типа услуги
     }
 
-    public void fillConnectionServices(String phoneNumber) {
-        connectionServicesField.sendKeys("Услуги связи");
-        phoneNumberField.sendKeys(phoneNumber);
-        continueButton.click();
+    public void enterPhoneNumber(String phoneNumber) {
+        // Логика ввода номера телефона
     }
 
-    public void verifyDetailsAfterContinue(String expectedAmount, String expectedPhoneNumber) {
-        assert driver.findElement(By.id("amount_display")).getText().equals(expectedAmount);
-        assert phoneNumberField.getAttribute("value").equals(expectedPhoneNumber);
-        assert cardNumberField.getAttribute("placeholder").equals("Введите номер карты");
-        assert paymentSystemIcons.size() > 0;
+    public void clickContinueButton() {
+        driver.findElement(continueButton).click();
+    }
+
+    public String getDisplayedAmount() {
+        return driver.findElement(amountDisplay).getText();
+    }
+
+    public String getDisplayedPhone() {
+        return driver.findElement(phoneDisplay).getText();
+    }
+
+    public String getEmptyFieldPlaceholder() {
+        return driver.findElement(emptyFieldPlaceholder).getText();
+    }
+
+    public List<String> getPaymentSystemLogos() {
+        List<String> logos = new ArrayList<>();
+        // Получаем список логотипов
+        driver.findElements(paymentSystemLogos).forEach(logo -> logos.add(logo.getAttribute("src")));
+        return logos;
     }
 }
