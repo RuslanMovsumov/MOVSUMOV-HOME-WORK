@@ -7,9 +7,9 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.By; // Добавлен импорт
+import org.openqa.selenium.By; // Импорт для использования By
 import pageobjects.OnlineRechargePage;
-import java.util.List; // Добавлен импорт
+import java.util.List; // Импорт для использования List
 
 import static org.junit.jupiter.api.Assertions.*;
 
