@@ -2,6 +2,8 @@ package pageobjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OnlineRechargePage {
     private WebDriver driver;
@@ -15,7 +17,10 @@ public class OnlineRechargePage {
     private By cardExpiryInput = By.id("card-expiry-input");
     private By cardCvcInput = By.id("card-cvc-input");
     private By paymentSystemLogos = By.cssSelector(".payment-system-logo");
-    
+
+    private By cardNumberPlaceholder = By.cssSelector("#card-number-input::placeholder");
+    private By cardExpiryPlaceholder = By.cssSelector("#card-expiry-input::placeholder");
+    private By cardCvcPlaceholder = By.cssSelector("#card-cvc-input::placeholder");
     private By emptyFieldPlaceholder = By.className("empty-field-placeholder");
 
     public OnlineRechargePage(WebDriver driver) {
@@ -23,11 +28,10 @@ public class OnlineRechargePage {
     }
 
     public void selectServiceType(String serviceType) {
-        // Логика выбора типа услуги
     }
 
     public void enterPhoneNumber(String phoneNumber) {
-        // Логика ввода номера телефона
+        driver.findElement(phoneNumberInput).sendKeys(phoneNumber);
     }
 
     public void clickContinueButton() {
@@ -40,6 +44,18 @@ public class OnlineRechargePage {
 
     public String getDisplayedPhone() {
         return driver.findElement(phoneDisplay).getText();
+    }
+
+    public String getCardNumberPlaceholder() {
+        return driver.findElement(cardNumberInput).getAttribute("placeholder");
+    }
+
+    public String getExpirationDatePlaceholder() {
+        return driver.findElement(cardExpiryInput).getAttribute("placeholder");
+    }
+
+    public String getCVCPlaceholder() {
+        return driver.findElement(cardCvcInput).getAttribute("placeholder");
     }
 
     public String getEmptyFieldPlaceholder() {
