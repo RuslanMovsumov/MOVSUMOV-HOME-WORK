@@ -8,7 +8,11 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 
-  public class OnlineRechargePageTest {
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+import java.util.List;
+
+public class OnlineRechargePageTest {
     private WebDriver driver;
     private OnlineRechargePage onlineRechargePage;
 
@@ -22,6 +26,7 @@ import io.qameta.allure.Story;
 
     @Test
     @Description("Проверка наполнения пустых полей ввода на странице онлайн-пополнения")
+    @Story("Проверка обязательных полей ввода")
     public void testEmptyFieldPlaceholders() {
         onlineRechargePage.selectServiceType("Услуги связи");
         onlineRechargePage.enterPhoneNumber(""); 
@@ -34,6 +39,7 @@ import io.qameta.allure.Story;
 
     @Test
     @Description("Тестирование отображения данных при оплате услуг связи")
+    @Story("Проверка успешной оплаты услуг")
     public void testServicePaymentDetails() {
         onlineRechargePage.selectServiceType("Услуги связи");
         onlineRechargePage.enterPhoneNumber("297777777");
