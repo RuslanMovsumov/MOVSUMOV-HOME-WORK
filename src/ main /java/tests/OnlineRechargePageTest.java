@@ -1,7 +1,7 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterEach;
+import org.testng.annotations.BeforeEach;
 import org.testng.annotations.Test;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Description;
@@ -17,7 +17,7 @@ public class OnlineRechargePageTest {
     private WebDriver driver;
     private OnlineRechargePage onlineRechargePage;
 
-    @BeforeClass
+     @BeforeEach 
     public void setUp() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
@@ -58,7 +58,7 @@ public class OnlineRechargePageTest {
         onlineRechargePage.selectServiceType(serviceType);
     }
 
-    @AfterClass
+    @AfterEach
     public void tearDown() {
         if (driver != null) {
             driver.quit();
