@@ -70,7 +70,8 @@ public class MTSOnlineRechargeTests {
         onlineRechargePage.clickContinueButton();
         assertTrue(onlineRechargePage.isResultMessageDisplayed());
     } 
-     @Test
+    
+    @Test
     public void testEmptyFieldErrors() {
         String[] serviceTypes = {"Услуги связи", "Домашний интернет", "Рассрочка", "Задолженность"};
 
