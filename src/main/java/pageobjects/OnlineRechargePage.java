@@ -18,8 +18,7 @@ public class OnlineRechargePage extends BasePage {
     private By phoneNumberField = By.id("phoneNumber");
     private By continueButton = By.xpath("//button[contains(text(), 'Продолжить')]");
     private By resultMessage = By.id("resultMessage");
-    private By fieldErrorMessages = By.cssSelector(".error-message"); 
-
+  
     // Поля для реквизитов карты
     private By cardNumberField = By.id("cardNumber");
     private By cardExpiryField = By.id("cardExpiry");
