@@ -45,17 +45,20 @@ public class MTSOnlineRechargeTests {
     @Test
     @Description("Проверка наличия логотипов платежных систем.")
     public void testPaymentSystemLogos() {
-        List<String> actualLogoList = onlineRechargePage.getPaymentSystemLogos();
-        assertFalse(actualLogoList.isEmpty(), "Логотипы не найдены");
+        List<String> actualLogoList = onlineRechargePage.arePaymentSystemLogosPresent();
+        if (actualLogoList.isEmpty()) {
+            fail("Логотипы не найдены");
+        }
 
         assertAll(
-            () -> assertTrue(actualLogoList.contains("Visa"), "Логотип Visa отсутствует"),
-            () -> assertTrue(actualLogoList.contains("Verified By Visa"), "Логотип Verified By Visa отсутствует"),
-            () -> assertTrue(actualLogoList.contains("MasterCard"), "Логотип MasterCard отсутствует"),
-            () -> assertTrue(actualLogoList.contains("MasterCard Secure Code"), "Логотип MasterCard Secure Code отсутствует"),
-            () -> assertTrue(actualLogoList.contains("Белкарт"), "Логотип Белкарт отсутствует")
+            () -> { assertTrue(actualLogoList.contains("Visa")); },
+            () -> { assertTrue(actualLogoList.contains("Verified By Visa")); },
+            () -> { assertTrue(actualLogoList.contains("MasterCard")); },
+            () -> { assertTrue(actualLogoList.contains("MasterCard Secure Code")); },
+            () -> { assertTrue(actualLogoList.contains("Белкарт")); }
         );
     }
+
 
     @Test
     @Description("Проверка перехода по ссылке 'Подробнее о сервисе'.")
