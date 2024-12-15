@@ -1,21 +1,23 @@
 package tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import io.qameta.allure.*;
+import io.qameta.allure.Description; // Импортируем аннотацию Allure
+import io.qameta.allure.Step; // Импортируем аннотацию для шагов
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.By; 
+import org.openqa.selenium.By;
 import pageobjects.OnlineRechargePage;
-import java.util.List; 
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@Epic("Online Recharge Tests") 
-@Feature("Payment Functionality") 
 public class MTSOnlineRechargeTests {
     private WebDriver driver;
     private OnlineRechargePage onlineRechargePage;
@@ -24,45 +26,39 @@ public class MTSOnlineRechargeTests {
     public void setUp() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--incognito"); // Открываем в режиме инкогнито
+        options.addArguments("--incognito");
         driver = new ChromeDriver(options);
-        driver.manage().window().maximize(); // Разворачиваем окно браузера
-
+        driver.manage().window().maximize();
         driver.get("https://mts.by");
 
         // Принятие cookie
-        driver.switchTo().activeElement();
         driver.findElement(By.cssSelector("#cookie-agree")).click();
-        driver.switchTo().defaultContent();
-
         onlineRechargePage = new OnlineRechargePage(driver);
     }
 
     @Test
-    @Description("Проверка заголовка блока онлайн пополнения") // Описание для теста
+    @Description("Проверка заголовка блока на странице онлайн пополнения.")
     public void testBlockTitle() {
         assertEquals("Онлайн пополнение без комиссии", onlineRechargePage.getBlockTitle());
     }
 
     @Test
-    @Description("Проверка наличия логотипов платежных систем") // Описание для теста
+    @Description("Проверка наличия логотипов платежных систем.")
     public void testPaymentSystemLogos() {
-        List<String> actualLogoList = onlineRechargePage.arePaymentSystemLogosPresent();
-        if (actualLogoList.isEmpty()) {
-            fail("Логотипы не найдены");
-        }
+        List<String> actualLogoList = onlineRechargePage.getPaymentSystemLogos();
+        assertFalse(actualLogoList.isEmpty(), "Логотипы не найдены");
 
         assertAll(
-            () -> { assertTrue(actualLogoList.contains("Visa")); },
-            () -> { assertTrue(actualLogoList.contains("Verified By Visa")); },
-            () -> { assertTrue(actualLogoList.contains("MasterCard")); },
-            () -> { assertTrue(actualLogoList.contains("MasterCard Secure Code")); },
-            () -> { assertTrue(actualLogoList.contains("Белкарт")); }
+            () -> assertTrue(actualLogoList.contains("Visa"), "Логотип Visa отсутствует"),
+            () -> assertTrue(actualLogoList.contains("Verified By Visa"), "Логотип Verified By Visa отсутствует"),
+            () -> assertTrue(actualLogoList.contains("MasterCard"), "Логотип MasterCard отсутствует"),
+            () -> assertTrue(actualLogoList.contains("MasterCard Secure Code"), "Логотип MasterCard Secure Code отсутствует"),
+            () -> assertTrue(actualLogoList.contains("Белкарт"), "Логотип Белкарт отсутствует")
         );
     }
 
     @Test
-    @Description("Проверка функциональности ссылки 'Подробнее'") // Описание для теста
+    @Description("Проверка перехода по ссылке 'Подробнее о сервисе'.")
     public void testMoreInfoLink() {
         onlineRechargePage.clickMoreInfoLink();
         assertTrue(driver.getCurrentUrl().contains("https://www.mts.by/help/poryadok-oplaty-i-bezopasnost-internet-platezhey/")); 
@@ -70,16 +66,16 @@ public class MTSOnlineRechargeTests {
     }
 
     @Test
-    @Description("Проверка функциональности формы пополнения") // Описание для теста
+    @Description("Проверка функциональности формы онлайн пополнения.")
     public void testFormFunctionality() {
         onlineRechargePage.selectServiceType("Услуги связи");
         onlineRechargePage.enterPhoneNumber("297777777");
         onlineRechargePage.clickContinueButton();
-        assertTrue(onlineRechargePage.isResultMessageDisplayed());
+        assertTrue(onlineRechargePage.isResultMessageDisplayed(), "Сообщение результата не отображается");
     }
 
     @Test
-    @Description("Проверка ошибок в полях для различных типов услуг") // Описание для теста
+    @Description("Проверка наличия сообщений об ошибках для различных типов услуг.")
     public void testFieldErrorsForServiceTypes() {
         String[] serviceTypes = {"Услуги связи", "Домашний интернет", "Рассрочка", "Задолженность"};
 
@@ -93,7 +89,7 @@ public class MTSOnlineRechargeTests {
     }
 
     @Test
-    @Description("Проверка онлайн пополнения для типа услуги") // Описание для теста
+    @Description("Проверка онлайн пополнения для типа услуги 'Услуги связи'.")
     public void testOnlineRechargeForServiceType() {
         String phoneNumber = "297777777"; 
         String expectedAmount = "100";  
@@ -102,11 +98,26 @@ public class MTSOnlineRechargeTests {
         onlineRechargePage.clickContinueButton();
 
         assertTrue(onlineRechargePage.isCorrectDisplayAfterContinue(expectedAmount, phoneNumber), 
-            "Данные на экране найдены после продолжения.");
+            "Данные на экране не соответствуют ожидаемым после продолжения.");
 
-        // Проверка наличия иконок платежных систем
-        List<String> actualLogos = onlineRechargePage.arePaymentSystemLogosPresent();
-        assertFalse(actualLogos.isEmpty(), "Логотипы платежных систем найдены.");
+        List<String> actualLogos = onlineRechargePage.getPaymentSystemLogos();
+        assertFalse(actualLogos.isEmpty(), "Логотипы платежных систем не найдены.");
+    } 
+
+    @Test
+    @Description("Проверка клика по кнопке 'Продолжить'.")
+    public void testClickContinueButton() {
+        onlineRechargePage.selectServiceType("Услуги связи");
+        String phoneNumber = "1234567890";
+        onlineRechargePage.enterPhoneNumber(phoneNumber);
+
+        assertTrue(onlineRechargePage.isPhoneNumberValid(phoneNumber), "Номер телефона введен некорректно");
+
+        onlineRechargePage.clickContinueButton();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("resultMessage")));
+        assertTrue(onlineRechargePage.isResultMessageDisplayed(), "Сообщение результата не отображается для номера телефона: " + phoneNumber);
     }
 
     @AfterEach
