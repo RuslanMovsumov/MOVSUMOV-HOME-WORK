@@ -84,7 +84,7 @@ public void testFieldErrorsForServiceTypes() {
     }
 }
 
-  @Test
+   @Test
 public void testOnlineRechargeForServiceType() {
     String phoneNumber = "297777777"; 
     String expectedAmount = "100";  
