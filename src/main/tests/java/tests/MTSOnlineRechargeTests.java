@@ -43,14 +43,16 @@ public class MTSOnlineRechargeTests {
     @Test
     public void testPaymentSystemLogos() {
         List<String> actualLogoList = onlineRechargePage.arePaymentSystemLogosPresent();
-        assertFalse(actualLogoList.isEmpty(), "Логотипы не найдены");
+        if (actualLogoList.isEmpty()) {
+            fail("Логотипы не найдены");
+        }
 
         assertAll(
-            () -> assertTrue(actualLogoList.contains("Visa"), "Логотип Visa отсутствует"),
-            () -> assertTrue(actualLogoList.contains("Verified By Visa"), "Логотип Verified By Visa отсутствует"),
-            () -> assertTrue(actualLogoList.contains("MasterCard"), "Логотип MasterCard отсутствует"),
-            () -> assertTrue(actualLogoList.contains("MasterCard Secure Code"), "Логотип MasterCard Secure Code отсутствует"),
-            () -> assertTrue(actualLogoList.contains("Белкарт"), "Логотип Белкарт отсутствует")
+            () -> { assertTrue(actualLogoList.contains("Visa")); },
+            () -> { assertTrue(actualLogoList.contains("Verified By Visa")); },
+            () -> { assertTrue(actualLogoList.contains("MasterCard")); },
+            () -> { assertTrue(actualLogoList.contains("MasterCard Secure Code")); },
+            () -> { assertTrue(actualLogoList.contains("Белкарт")); }
         );
     }
 
@@ -67,22 +69,36 @@ public class MTSOnlineRechargeTests {
         onlineRechargePage.enterPhoneNumber("297777777");
         onlineRechargePage.clickContinueButton();
         assertTrue(onlineRechargePage.isResultMessageDisplayed());
-    } 
+    }
 
     @Test
-    public void testOnlineRecharge() { 
-        // Проверка надписей в незаполненных полях
-        List<String> errors = onlineRechargePage.getFieldErrors();
-        
-        // Проверка по варианту «Услуги связи»
-        String phoneNumber = "1234567890"; 
-        String expectedAmount = "100";  
-        onlineRechargePage.fillConnectionServices(phoneNumber);
+public void testFieldErrorsForServiceTypes() {
+    String[] serviceTypes = {"Услуги связи", "Домашний интернет", "Рассрочка", "Задолженность"};
 
-        // Проверка отображения суммы и других полей
-        boolean isDisplayCorrect = onlineRechargePage.isCorrectDisplayAfterContinue(expectedAmount, phoneNumber);
-        assertTrue(isDisplayCorrect, "Данные на экране правильные.");
+    for (String serviceType : serviceTypes) {
+        onlineRechargePage.selectServiceType(serviceType);
+        onlineRechargePage.clickContinueButton();
+        
+        List<String> errors = onlineRechargePage.getFieldErrors();
+        assertFalse(errors.isEmpty(), "Ошибки не найдены для типа услуги: " + serviceType);
     }
+}
+
+  @Test
+public void testOnlineRechargeForServiceType() {
+    String phoneNumber = "297777777"; 
+    String expectedAmount = "100";  
+    onlineRechargePage.selectServiceType("Услуги связи");
+    onlineRechargePage.enterPhoneNumber(phoneNumber);
+    onlineRechargePage.clickContinueButton();
+
+    assertTrue(onlineRechargePage.isCorrectDisplayAfterContinue(expectedAmount, phoneNumber), 
+        "Данные на экране найдены после продолжения.");
+
+    // Проверка наличия иконок платежных систем
+    List<String> actualLogos = onlineRechargePage.arePaymentSystemLogosPresent();
+    assertFalse(actualLogos.isEmpty(), "Логотипы платежных систем найдены.");
+}
 
     @AfterEach
     public void tearDown() {
@@ -91,3 +107,4 @@ public class MTSOnlineRechargeTests {
         }
     }
 }
+   
