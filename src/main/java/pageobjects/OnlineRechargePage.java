@@ -15,11 +15,11 @@ public class OnlineRechargePage extends BasePage {
   private By phoneNumberField = By.id("phoneNumber");
   private By continueButton = By.xpath("//button[contains(text(), 'Продолжить')]");
   private By resultMessage = By.id("resultMessage"); 
-  private By serviceFieldErrors = By.cssSelector(".error-message");
-  private By paymentAmount = By.id("paymentAmount");
-  private By phoneNumberDisplay = By.id("displayedPhoneNumber");
-  private By cardFields = By.cssSelector(".card-fields");
-  private By paymentSystemIcons = By.cssSelector(".payment-icons"); 
+  private By serviceTypeDropdown = By.id("serviceType"); 
+  private By phoneNumberInput = By.id("phoneNumber"); 
+  private By continueButton = By.id("continue"); 
+  private By fieldErrorMessages = By.cssSelector(".error-message"); 
+  private By paymentSystemLogos = By.cssSelector(".payment-logos img");
   
   public OnlineRechargePage(WebDriver driver) {
         super(driver);
@@ -59,34 +59,46 @@ public class OnlineRechargePage extends BasePage {
         return driver.findElement(resultMessage).isDisplayed();
     } 
 
-  public List<String> getFieldErrors() {
-    List<WebElement> errorMessages = driver.findElements(serviceFieldErrors);
-    List<String> errorTexts = new ArrayList<>();
-    for (WebElement error : errorMessages) {
-        errorTexts.add(error.getText());
+   public void selectServiceType(String serviceType) {
+        driver.findElement(serviceTypeDropdown).sendKeys(serviceType); 
     }
-    return errorTexts;
+
+    public void enterPhoneNumber(String phoneNumber) {
+        driver.findElement(phoneNumberInput).sendKeys(phoneNumber);
+    }
+
+    public void clickContinueButton() {
+        driver.findElement(continueButton).click();
+    }
+
+    public List<String> getFieldErrors() {
+        List<WebElement> errors = driver.findElements(fieldErrorMessages);
+        List<String> errorMessages = new ArrayList<>();
+        for (WebElement error : errors) {
+            errorMessages.add(error.getText());
+        }
+        return errorMessages;
+    }
+
+    public boolean isCorrectDisplayAfterContinue(String expectedAmount, String expectedPhoneNumber) {
+        // Проверка отображения суммы и номера телефона
+        String displayedAmount = driver.findElement(By.id("displayedAmount")).getText(); 
+        String displayedPhoneNumber = driver.findElement(By.id("displayedPhoneNumber")).getText(); 
+        return displayedAmount.equals(expectedAmount) && displayedPhoneNumber.equals(expectedPhoneNumber);
+    }
+
+    public List<String> arePaymentSystemLogosPresent() {
+        List<WebElement> logos = driver.findElements(paymentSystemLogos);
+        List<String> logoNames = new ArrayList<>();
+        for (WebElement logo : logos) {
+            logoNames.add(logo.getAttribute("alt")); 
+        }
+        return logoNames;
+    }
 }
+  
 
-  public void fillConnectionServices(String phoneNumber) {
-    selectServiceType("Услуги связи");
-    enterPhoneNumber(phoneNumber);
-    clickContinueButton();
-} 
 
-  public boolean isCorrectDisplayAfterContinue(String expectedAmount, String expectedPhoneNumber) {
-    String actualAmount = driver.findElement(paymentAmount).getText();
-    String actualPhoneNumber = driver.findElement(phoneNumberDisplay).getText();
-    
-    boolean isAmountCorrect = actualAmount.equals(expectedAmount);
-    boolean isPhoneNumberCorrect = actualPhoneNumber.equals(expectedPhoneNumber);
-    
-    boolean areCardFieldsDisplayed = driver.findElements(cardFields).size() > 0;
-    boolean arePaymentIconsPresent = driver.findElements(paymentSystemIcons).size() > 0;
-
-    return isAmountCorrect && isPhoneNumberCorrect && areCardFieldsDisplayed && arePaymentIconsPresent;
-  } 
-}  
 
 
 
