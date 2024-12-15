@@ -8,20 +8,16 @@ import java.util.List;
 
 public class OnlineRechargePage extends BasePage {
 
-  private By blockTitle = By.xpath("//h2[contains(text(), 'Онлайн пополнение')]");
-  private By paymentSystemLogos = By.cssSelector(".pay__partners img");
-  private By moreInfoLink = By.linkText("Подробнее о сервисе");
-  private By serviceTypeSelect = By.id("serviceType");
-  private By phoneNumberField = By.id("phoneNumber");
-  private By continueButton = By.xpath("//button[contains(text(), 'Продолжить')]");
-  private By resultMessage = By.id("resultMessage"); 
-  private By serviceTypeDropdown = By.id("serviceType"); 
-  private By phoneNumberInput = By.id("phoneNumber"); 
-  private By continueButton = By.id("continue"); 
-  private By fieldErrorMessages = By.cssSelector(".error-message"); 
-  private By paymentSystemLogos = By.cssSelector(".payment-logos img");
-  
-  public OnlineRechargePage(WebDriver driver) {
+    private By blockTitle = By.xpath("//h2[contains(text(), 'Онлайн пополнение')]");
+    private By paymentSystemLogos = By.cssSelector(".payment-logos img");
+    private By moreInfoLink = By.linkText("Подробнее о сервисе");
+    private By serviceTypeSelect = By.id("serviceType");
+    private By phoneNumberField = By.id("phoneNumber");
+    private By continueButton = By.id("continue");
+    private By resultMessage = By.id("resultMessage");
+    private By fieldErrorMessages = By.cssSelector(".error-message");
+
+    public OnlineRechargePage(WebDriver driver) {
         super(driver);
     }
 
@@ -29,18 +25,18 @@ public class OnlineRechargePage extends BasePage {
         return driver.findElement(blockTitle).getText();
     }
 
-    public List arePaymentSystemLogosPresent() {
+    public List<String> getPaymentSystemLogos() {
         List<WebElement> logos = driver.findElements(paymentSystemLogos);
-        List<String> altsLogo = new ArrayList<>();
+        List<String> altTexts = new ArrayList<>();
         for (WebElement element : logos) {
-            altsLogo.add(element.getAttribute("alt"));
+            altTexts.add(element.getAttribute("alt"));
         }
-    return altsLogo;
+        return altTexts;
     }
 
     public void clickMoreInfoLink() {
         driver.findElement(moreInfoLink).click();
-    } 
+    }
 
     public void selectServiceType(String serviceType) {
         driver.findElement(serviceTypeSelect).click();
@@ -57,18 +53,6 @@ public class OnlineRechargePage extends BasePage {
 
     public boolean isResultMessageDisplayed() {
         return driver.findElement(resultMessage).isDisplayed();
-    } 
-
-   public void selectServiceType(String serviceType) {
-        driver.findElement(serviceTypeDropdown).sendKeys(serviceType); 
-    }
-
-    public void enterPhoneNumber(String phoneNumber) {
-        driver.findElement(phoneNumberInput).sendKeys(phoneNumber);
-    }
-
-    public void clickContinueButton() {
-        driver.findElement(continueButton).click();
     }
 
     public List<String> getFieldErrors() {
@@ -81,25 +65,14 @@ public class OnlineRechargePage extends BasePage {
     }
 
     public boolean isCorrectDisplayAfterContinue(String expectedAmount, String expectedPhoneNumber) {
-        // Проверка отображения суммы и номера телефона
-        String displayedAmount = driver.findElement(By.id("displayedAmount")).getText(); 
-        String displayedPhoneNumber = driver.findElement(By.id("displayedPhoneNumber")).getText(); 
+        String displayedAmount = driver.findElement(By.id("displayedAmount")).getText();
+        String displayedPhoneNumber = driver.findElement(By.id("displayedPhoneNumber")).getText();
         return displayedAmount.equals(expectedAmount) && displayedPhoneNumber.equals(expectedPhoneNumber);
     }
-
-    public List<String> arePaymentSystemLogosPresent() {
-        List<WebElement> logos = driver.findElements(paymentSystemLogos);
-        List<String> logoNames = new ArrayList<>();
-        for (WebElement logo : logos) {
-            logoNames.add(logo.getAttribute("alt")); 
-        }
-        return logoNames;
-    }
 }
+
+   
   
-
-
-
 
 
 
